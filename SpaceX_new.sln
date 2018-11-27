@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceX_new", "SpaceX_new\SpaceX_new.csproj", "{33B1CD89-BB39-4AFB-9FED-1A72C5E6BA93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer", "..\..\..\Desktop\Monogame\vgd2018-master\Farseer\Farseer.csproj", "{0B03B2D6-BCDB-4E07-AAFA-4EF84EA6A31B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer", "Farseer\Farseer.csproj", "{0B03B2D6-BCDB-4E07-AAFA-4EF84EA6A31B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

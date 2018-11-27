@@ -64,7 +64,7 @@
     <None Include="Content\rocket_body2.xnb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\Monogame\vgd2018-master\Farseer\Farseer.csproj">
+    <ProjectReference Include="..\Farseer\Farseer.csproj">
       <Project>{0b03b2d6-bcdb-4e07-aafa-4ef84ea6a31b}</Project>
       <Name>Farseer</Name>
     </ProjectReference>
