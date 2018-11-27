@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnimatedSprite.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Land.cs" />
     <Compile Include="Program.cs" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\bruner.xnb" />
     <None Include="Content\HUD.xnb" />
     <None Include="Content\rocket_body2.xnb" />
   </ItemGroup>

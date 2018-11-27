@@ -8,13 +8,21 @@ using FarseerPhysics.Factories;
 
 namespace SpaceX_new
 {
- 
+    enum Dir
+    {
+        Down,
+        Up,
+        Left,
+        Right
+    }
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         Texture2D rocket_Sprite;
+        Texture2D burner_Sprite;
         Texture2D land_Sprite;
 
         KeyboardState prevKeyboardState;
@@ -48,15 +56,16 @@ namespace SpaceX_new
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             rocket_Sprite = Content.Load<Texture2D>("rocket_body2");
+            burner_Sprite = Content.Load<Texture2D>("bruner");
             land_Sprite = Content.Load<Texture2D>("HUD");
 
             world = new World(new Vector2(0,1.8f));
 
-            player = new Rocket(world, new Vector2(rocket_Sprite.Width, rocket_Sprite.Height), rocket_Sprite);
+            player = new Rocket(world, new Vector2(rocket_Sprite.Width, rocket_Sprite.Height), rocket_Sprite, burner_Sprite);
             landingSpot = new Land(world, new Vector2(land_Sprite.Width, land_Sprite.Height), land_Sprite);
 
-            player.Position = new Vector2(GraphicsDevice.Viewport.Width / 2.0f, GraphicsDevice.Viewport.Height-590);
-            landingSpot.Position = new Vector2(GraphicsDevice.Viewport.Width / 2.0f, GraphicsDevice.Viewport.Height-30);
+            player.Position = new Vector2(GraphicsDevice.Viewport.Width / 2.0f, -GraphicsDevice.Viewport.Height  + 600);
+            landingSpot.Position = new Vector2(GraphicsDevice.Viewport.Width / 2.0f, GraphicsDevice.Viewport.Height - 80);
 
         }
 
@@ -71,6 +80,8 @@ namespace SpaceX_new
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            player.Update(gameTime);
+
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Enter) && (!prevKeyboardState.IsKeyDown(Keys.Enter)))
             {
@@ -82,7 +93,7 @@ namespace SpaceX_new
                 //player.Body.GravityScale = 0.5f;
 
                 //player.Body.ApplyForce(new Vector2(0.000005f, 0.0005f), player.Position);
-                player.Body.ApplyLinearImpulse(new Vector2(0.0f, -0.05f));
+                player.Body.ApplyLinearImpulse(new Vector2(0.01f, 0.0f));
              }
             
             

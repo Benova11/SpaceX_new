@@ -30,30 +30,81 @@ namespace SpaceX_new
         private Body body;
         private Vector2 size;
         private Texture2D texture;
+        private Dir direction = Dir.Down;
         private float speed = 700;
-        
+        private bool isMoving = false;
+        private KeyboardState kStateOld = Keyboard.GetState();
+        private AnimatedSprite anim;
+        //private AnimatedSprite[] animations = new AnimatedSprite[6];
 
 
-        public Rocket(World world,Vector2 size, Texture2D texture)
+
+        public Rocket(World world,Vector2 size, Texture2D texture, Texture2D burner)
         {
             this.size = size;
             body = BodyFactory.CreateRectangle(world, size.X * pixelToUnit, size.Y * pixelToUnit, 1);
             body.BodyType = BodyType.Static;
-            Body.CollisionCategories = Category.Cat1;
+            body.CollisionCategories = Category.Cat1;
+            //body.CollidesWith = Category.Cat2;
             this.texture = texture;
             rand = new Random();
-
-
+            anim = new AnimatedSprite (burner,1,6);
         }
 
         public Vector2 Position { get => body.Position * unitToPixel; set => body.Position = value * pixelToUnit; }
         public Vector2 Size { get => size * unitToPixel; set => size = value * pixelToUnit; }
         public Body Body { get => body; set => body = value; }
+        public bool IsMoving { get => isMoving; set => isMoving = value; }
+
+       
+
+
+        public void Update(GameTime gameTime)
+        {
+            KeyboardState kstate = Keyboard.GetState();
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+           // anim = animations[(int)direction];
+
+            if (isMoving) // apply animation
+                anim.Update(gameTime);
+            else //player will appear as standing with frame [0] from the atlas.
+                anim.CurrentFrame = 0;
+
+            isMoving = false;
+
+            if (kstate.IsKeyDown(Keys.Right))
+            {
+                direction = Dir.Right;
+                isMoving = true;
+            }
+
+            if (kstate.IsKeyDown(Keys.Left))
+            {
+                direction = Dir.Left;
+                isMoving = true;
+            }
+
+            if (kstate.IsKeyDown(Keys.Space))
+            {
+                direction = Dir.Up;
+                isMoving = true;
+            }
+
+            if (kstate.IsKeyUp(Keys.Space))
+            {
+                direction = Dir.Down;
+                isMoving = false;
+            }
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Vector2 scale = new Vector2(size.X / (float)texture.Width, size.Y / (float)texture.Height);
-            spriteBatch.Draw(texture, Position, null, Color.White, Body.Rotation, new Vector2(texture.Width, texture.Height), scale, SpriteEffects.None, 0);
+            Vector2 postion2Draw = new Vector2(Position.X, Position.Y + 129);
+            spriteBatch.Draw(texture, postion2Draw, null, Color.White, Body.Rotation, new Vector2(texture.Width, texture.Height), scale, SpriteEffects.None, 0);
+            Vector2 burner_Pos = new Vector2(postion2Draw.X -145,postion2Draw.Y -4);
+            anim.Draw(spriteBatch, burner_Pos);
         }
 
         public float randRotation()
@@ -65,16 +116,6 @@ namespace SpaceX_new
             Console.WriteLine((float)(mantissa * exponent));
             return (float)(mantissa * exponent);
         }
-
-            public void Fly(GameTime gameTime)
-            {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //Position = new Vector2()
-            // Position = new Vector2(Position.X,Position.Y - (speed * dt)); 
-            body.IgnoreGravity = true;
-            Position = new Vector2(Position.X, Position.Y - 2.3f);
-            body.Rotation += randRotation() * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
            
     }
 
