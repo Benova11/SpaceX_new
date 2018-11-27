@@ -39,7 +39,7 @@ namespace SpaceX_new
             this.size = size;
             body = BodyFactory.CreateRectangle(world, size.X * pixelToUnit, size.Y * pixelToUnit, 1);
             body.BodyType = BodyType.Static;
-            //Body.CollisionCategories = Category.Cat1;
+            Body.CollisionCategories = Category.Cat1;
             this.texture = texture;
             rand = new Random();
 
@@ -68,7 +68,7 @@ namespace SpaceX_new
 
             public void Fly(GameTime gameTime)
             {
-                float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             //Position = new Vector2()
             // Position = new Vector2(Position.X,Position.Y - (speed * dt)); 
             body.IgnoreGravity = true;

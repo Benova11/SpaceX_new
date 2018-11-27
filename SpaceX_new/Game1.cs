@@ -78,8 +78,11 @@ namespace SpaceX_new
             }
              if (keyboardState.IsKeyDown(Keys.Space))
              {
-                 player.Fly(gameTime);
+                //player.Fly(gameTime);
+                //player.Body.GravityScale = 0.5f;
 
+                //player.Body.ApplyForce(new Vector2(0.000005f, 0.0005f), player.Position);
+                player.Body.ApplyLinearImpulse(new Vector2(0.0f, -0.05f));
              }
             
             
