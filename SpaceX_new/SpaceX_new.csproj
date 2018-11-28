@@ -62,7 +62,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
     <None Include="Content\bruner.xnb" />
+    <None Include="Content\control.xnb" />
+    <None Include="Content\engine.xnb" />
     <None Include="Content\HUD.xnb" />
+    <None Include="Content\landing.xnb" />
     <None Include="Content\rocket_body2.xnb" />
     <None Include="Content\timerFont.xnb" />
   </ItemGroup>

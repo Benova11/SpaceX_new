@@ -71,7 +71,7 @@ namespace SpaceX_new
             {
                 isMoving = true;
                 body.ApplyLinearImpulse(new Vector2(0.009f, 0.0f));
-                body.Rotation += 0.002f;
+                body.Rotation += 0.004f;
 
             }
 
@@ -80,7 +80,7 @@ namespace SpaceX_new
                
                 isMoving = true;
                 body.ApplyLinearImpulse(new Vector2(-0.009f, 0.0f));
-                body.Rotation += -0.002f;
+                body.Rotation -= 0.004f;
             }
 
             if (kstate.IsKeyDown(Keys.Space))

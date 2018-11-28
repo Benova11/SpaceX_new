@@ -5,11 +5,17 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/bruner.png</File>
+    <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/control.mp3</File>
+    <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/engine.wav</File>
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/HUD.png</File>
+    <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/landing.mp3</File>
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/rocket_body2.png</File>
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/timerFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

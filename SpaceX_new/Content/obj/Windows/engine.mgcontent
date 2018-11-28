@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/engine.wav</SourceFile>
+  <SourceTime>2018-11-28T20:48:35.8803615+02:00</SourceTime>
+  <DestFile>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/bin/Windows/engine.xnb</DestFile>
+  <DestTime>2018-11-28T20:49:31.5447688+02:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-09-24T00:55:52+03:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-09-24T00:55:52+03:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

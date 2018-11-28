@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace SpaceX_new
 {
@@ -18,12 +20,19 @@ namespace SpaceX_new
         Texture2D burner_Sprite;
         Texture2D land_Sprite;
 
+        Song computer_Control;
+        Song landing;
+        
+
         SpriteFont font;
 
+        KeyboardState keyboardState;
         KeyboardState prevKeyboardState;
 
         Rocket player;
         Land landingSpot;
+
+        bool islanded = false;
 
         World world;
 
@@ -41,7 +50,7 @@ namespace SpaceX_new
         
         protected override void Initialize()
         {
-
+            
             base.Initialize();
         }
 
@@ -53,6 +62,10 @@ namespace SpaceX_new
             rocket_Sprite = Content.Load<Texture2D>("rocket_body2");
             burner_Sprite = Content.Load<Texture2D>("bruner");
             land_Sprite = Content.Load<Texture2D>("HUD");
+
+            computer_Control = Content.Load<Song>("control");
+            landing = Content.Load<Song>("landing");
+
 
             font = Content.Load<SpriteFont>("timerFont");
 
@@ -78,13 +91,25 @@ namespace SpaceX_new
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.Update(gameTime);
+            
 
-            KeyboardState keyboardState = Keyboard.GetState();
+            keyboardState = Keyboard.GetState();
+
             if (keyboardState.IsKeyDown(Keys.Enter) && (!prevKeyboardState.IsKeyDown(Keys.Enter)))
             {
+                MediaPlayer.Play(computer_Control);
                 player.Body.BodyType = BodyType.Dynamic;
             }
+
+            if ((player.Body.Position.Y >= 5.4f && player.Position.Y > 0) && (player.Body.Rotation < 0.2f && player.Body.Rotation > -0.2f) && !islanded)
+            {
+                islanded = true;
+                player.Body.Rotation = 0.0f;
+                player.Body.BodyType = BodyType.Static;
+                MediaPlayer.Play(landing);
+            }
+
+            player.Update(gameTime);
 
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
@@ -100,9 +125,14 @@ namespace SpaceX_new
 
             player.Draw(spriteBatch);
             landingSpot.Draw(spriteBatch);
+            
+            spriteBatch.DrawString(font, "Rotation: " + player.Body.Rotation.ToString("0.000"), new Vector2(3, 0),Color.White);
+            
+            if (islanded)
+            {
+                spriteBatch.DrawString(font, "Seccessfully Landed", new Vector2(GraphicsDevice.Viewport.Width / 2.0f - 100, -GraphicsDevice.Viewport.Height + 800), Color.White);
 
-
-            spriteBatch.DrawString(font, "Rotation: " + player.Body.Rotation.ToString(), new Vector2(3, 0),Color.White);
+            }
 
             spriteBatch.End();
 

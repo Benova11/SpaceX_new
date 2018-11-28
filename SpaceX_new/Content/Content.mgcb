@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:bruner.png
 
+#begin control.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:control.mp3
+
+#begin engine.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:engine.wav
+
 #begin HUD.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -36,6 +48,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:HUD.png
+
+#begin landing.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:landing.mp3
 
 #begin rocket_body2.png
 /importer:TextureImporter
