@@ -30,12 +30,9 @@ namespace SpaceX_new
         private Body body;
         private Vector2 size;
         private Texture2D texture;
-        private Dir direction = Dir.Down;
-        private float speed = 700;
         private bool isMoving = false;
         private KeyboardState kStateOld = Keyboard.GetState();
         private AnimatedSprite anim;
-        //private AnimatedSprite[] animations = new AnimatedSprite[6];
 
 
 
@@ -45,7 +42,6 @@ namespace SpaceX_new
             body = BodyFactory.CreateRectangle(world, size.X * pixelToUnit, size.Y * pixelToUnit, 1);
             body.BodyType = BodyType.Static;
             body.CollisionCategories = Category.Cat1;
-            //body.CollidesWith = Category.Cat2;
             this.texture = texture;
             rand = new Random();
             anim = new AnimatedSprite (burner,1,6);
@@ -64,8 +60,6 @@ namespace SpaceX_new
             KeyboardState kstate = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-           // anim = animations[(int)direction];
-
             if (isMoving) // apply animation
                 anim.Update(gameTime);
             else //player will appear as standing with frame [0] from the atlas.
@@ -75,27 +69,34 @@ namespace SpaceX_new
 
             if (kstate.IsKeyDown(Keys.Right))
             {
-                direction = Dir.Right;
                 isMoving = true;
+                body.ApplyLinearImpulse(new Vector2(0.009f, 0.0f));
+                body.Rotation += 0.002f;
+
             }
 
             if (kstate.IsKeyDown(Keys.Left))
             {
-                direction = Dir.Left;
+               
                 isMoving = true;
+                body.ApplyLinearImpulse(new Vector2(-0.009f, 0.0f));
+                body.Rotation += -0.002f;
             }
 
             if (kstate.IsKeyDown(Keys.Space))
             {
-                direction = Dir.Up;
                 isMoving = true;
+                body.ApplyLinearImpulse(new Vector2(0.0f, -0.02f));
+                body.Rotation += randRotation(-1,1) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             if (kstate.IsKeyUp(Keys.Space))
             {
-                direction = Dir.Down;
                 isMoving = false;
             }
+
+            Console.WriteLine(body.Rotation);
+            Console.WriteLine(body.Position);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -107,13 +108,11 @@ namespace SpaceX_new
             anim.Draw(spriteBatch, burner_Pos);
         }
 
-        public float randRotation()
+        public float randRotation(int min,int max)
         {
             
             double mantissa = (rand.NextDouble() * 2.0) - 1.0;
-            // choose -149 instead of -126 to also generate subnormal floats (*)
-            double exponent = Math.Pow(2.0, rand.Next(-1, 1));
-            Console.WriteLine((float)(mantissa * exponent));
+            double exponent = Math.Pow(2.0, rand.Next(min, max));
             return (float)(mantissa * exponent);
         }
            

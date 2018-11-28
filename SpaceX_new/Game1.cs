@@ -8,13 +8,6 @@ using FarseerPhysics.Factories;
 
 namespace SpaceX_new
 {
-    enum Dir
-    {
-        Down,
-        Up,
-        Left,
-        Right
-    }
 
     public class Game1 : Game
     {
@@ -24,6 +17,8 @@ namespace SpaceX_new
         Texture2D rocket_Sprite;
         Texture2D burner_Sprite;
         Texture2D land_Sprite;
+
+        SpriteFont font;
 
         KeyboardState prevKeyboardState;
 
@@ -59,6 +54,9 @@ namespace SpaceX_new
             burner_Sprite = Content.Load<Texture2D>("bruner");
             land_Sprite = Content.Load<Texture2D>("HUD");
 
+            font = Content.Load<SpriteFont>("timerFont");
+
+
             world = new World(new Vector2(0,1.8f));
 
             player = new Rocket(world, new Vector2(rocket_Sprite.Width, rocket_Sprite.Height), rocket_Sprite, burner_Sprite);
@@ -87,16 +85,6 @@ namespace SpaceX_new
             {
                 player.Body.BodyType = BodyType.Dynamic;
             }
-             if (keyboardState.IsKeyDown(Keys.Space))
-             {
-                //player.Fly(gameTime);
-                //player.Body.GravityScale = 0.5f;
-
-                //player.Body.ApplyForce(new Vector2(0.000005f, 0.0005f), player.Position);
-                player.Body.ApplyLinearImpulse(new Vector2(0.01f, 0.0f));
-             }
-            
-            
 
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
@@ -112,6 +100,9 @@ namespace SpaceX_new
 
             player.Draw(spriteBatch);
             landingSpot.Draw(spriteBatch);
+
+
+            spriteBatch.DrawString(font, "Rotation: " + player.Body.Rotation.ToString(), new Vector2(3, 0),Color.White);
 
             spriteBatch.End();
 

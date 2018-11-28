@@ -7,8 +7,10 @@
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/bruner.png</File>
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/HUD.png</File>
     <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/rocket_body2.png</File>
+    <File>C:/Users/Ben/source/repos/SpaceX_new/SpaceX_new/Content/timerFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

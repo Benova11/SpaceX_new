@@ -64,6 +64,7 @@
     <None Include="Content\bruner.xnb" />
     <None Include="Content\HUD.xnb" />
     <None Include="Content\rocket_body2.xnb" />
+    <None Include="Content\timerFont.xnb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Farseer\Farseer.csproj">
