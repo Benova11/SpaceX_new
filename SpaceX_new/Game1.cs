@@ -101,7 +101,7 @@ namespace SpaceX_new
                 player.Body.BodyType = BodyType.Dynamic;
             }
 
-            if ((player.Body.Position.Y >= 5.4f && player.Position.Y > 0) && (player.Body.Rotation < 0.2f && player.Body.Rotation > -0.2f) && !islanded)
+            if ((player.Body.Position.Y >= 5.4f) && ((player.Body.Position.X > landingSpot.Body.Position.X - 1.5f) && (player.Body.Position.X < ((landingSpot.Size.X) / 100f + landingSpot.Body.Position.X - 1.5f))) && (player.Body.Rotation < 0.2f && player.Body.Rotation > -0.2f) && !islanded)
             {
                 islanded = true;
                 player.Body.Rotation = 0.0f;
