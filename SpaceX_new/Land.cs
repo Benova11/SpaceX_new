@@ -45,13 +45,14 @@ namespace SpaceX_new
             //case rocket yet to land
             if (!isLanded)
             {//platform moves right to left constantly until rocket lands properly.
+                if(isMoving)//move right
                 {
                     body.Position = body.Position + new Vector2(0.04f, 0);
                     if (body.Position.X > 11.2)
                         isMoving = false;
 
                 }
-                if (!isMoving)//moe left
+                if (!isMoving)//move left
                     body.Position = body.Position - new Vector2(0.04f, 0);
                 if (body.Position.X < 1.5)
                     isMoving = true;

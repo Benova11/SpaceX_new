@@ -72,7 +72,7 @@ namespace SpaceX_new
             font = Content.Load<SpriteFont>("timerFont");
 
 
-            world = new World(new Vector2(0, 2.0f));
+            world = new World(new Vector2(0, 1.8f));
 
             player = new Rocket(world, new Vector2(rocket_Sprite.Width, rocket_Sprite.Height), rocket_Sprite, burner_Sprite);
             landingSpot = new Land(world, new Vector2(land_Sprite.Width, land_Sprite.Height), land_Sprite);
