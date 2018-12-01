@@ -72,7 +72,7 @@ namespace SpaceX_new
                 anim.CurrentFrame = 0;
 
             isMoving = false;
-
+            //case user press right arrow key - turn aside and rotates
             if (kstate.IsKeyDown(Keys.Right))
             {
                 isMoving = true;
@@ -80,7 +80,7 @@ namespace SpaceX_new
                 body.Rotation += 0.004f;
 
             }
-
+            //case user press left arrow key - turn aside and rotates
             if (kstate.IsKeyDown(Keys.Left))
             {
 
@@ -90,6 +90,7 @@ namespace SpaceX_new
                 body.Rotation -= 0.004f;
             }
 
+            //case user press space - accalerate up and radnomly rotates.
             if (kstate.IsKeyDown(Keys.Space))
             {
                 isMoving = true;
@@ -101,9 +102,6 @@ namespace SpaceX_new
             {
                 isMoving = false;
             }
-
-            Console.WriteLine(body.Rotation);
-            Console.WriteLine(body.Position);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -117,10 +115,9 @@ namespace SpaceX_new
                 anim.Draw(spriteBatch, burner_Pos);
             }
         }
-
+        //simulate random rotation when rockt is accalarates.
         public float randRotation(int min, int max)
         {
-
             double mantissa = (rand.NextDouble() * 2.0) - 1.0;
             double exponent = Math.Pow(2.0, rand.Next(min, max));
             return (float)(mantissa * exponent);
